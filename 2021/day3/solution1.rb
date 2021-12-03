@@ -1,32 +1,21 @@
 # part 1
+# gamma 000100011100 and 284
+# epsilon 111011100011 and 3811
+# answer 1082324
+
+lines = IO.readlines('input.txt', chomp: true)
+
 ones = [0] * 12
-
-f = File.open('input.txt', 'r')
-
-number_of_lines = 0
-
-f.each_line do |number|
-  number_of_lines += 1
-  number.strip.split('').each_index do |i|
-    if number[i] == '1'
-      ones[i] += 1
-    end
+lines.each do |number|
+  number.split('').each_index do |bit|
+    ones[bit] += 1 if number[bit] == '1'
   end
 end
-f.close
 
-puts("hi #{ones}")
+gamma = ones.map { |bit|  bit > lines.size / 2 ? '1' : '0' }.join
+epsilon = ones.map { |bit| bit > lines.size / 2 ? '0' : '1' }.join
 
-gamma = ones.map do |i|
-  i > number_of_lines / 2 ? '1' : '0'
-end.join
-
-epsilon = ones.map do |i|
-  i > number_of_lines / 2 ? '0' : '1'
-end.join
-
-number = ones.join.to_i(2)
 puts("gamma #{gamma} and #{gamma.to_i(2)}")
 puts("epsilon #{epsilon} and #{epsilon.to_i(2)}")
 
-puts("answer #{ gamma.to_i(2) * epsilon.to_i(2)}")
+puts("answer #{gamma.to_i(2) * epsilon.to_i(2)}")
