@@ -1,3 +1,6 @@
 
+# executable
+*.o
+
 # some haskell shit idk
 *.hi
