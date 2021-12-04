@@ -6,6 +6,6 @@ def solve(set, func, bit = 0)
   solve(set.send(func) { |n| n[bit] == most_common }, func, bit + 1)
 end
 
-oxygen_set = IO.readlines('input.txt', chomp: true)
+numbers = IO.readlines('input.txt', chomp: true)
 
-puts(solve(oxygen_set, :select).to_i(2) * solve(oxygen_set.dup, :reject).to_i(2))
+puts(solve(numbers, :select).to_i(2) * solve(numbers, :reject).to_i(2))
